@@ -126,16 +126,15 @@ const Layout = () => {
                   <span className="font-medium">{route.label}</span>
                 </NavLink>
               ))}
-            </div>
+</div>
           </nav>
         </aside>
 
         {/* Main Content */}
-<main className="flex-1 bg-background relative">
+        <main className="flex-1 bg-background relative max-w-4xl mx-auto">
           <Outlet />
         </main>
       </div>
-
 {/* Mobile Bottom Navigation - Only show when not in chat view */}
       {!isOnChatView && (
         <nav className="lg:hidden flex-shrink-0 glass border-t border-white/20 z-40 shadow-soft">
