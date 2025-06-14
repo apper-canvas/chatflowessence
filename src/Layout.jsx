@@ -1,7 +1,7 @@
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import ApperIcon from '@/components/ApperIcon';
-import { routes } from '@/config/routes';
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import ApperIcon from "@/components/ApperIcon";
+import { routes } from "@/config/routes";
 
 const Layout = () => {
   const location = useLocation();
@@ -82,17 +82,18 @@ const Layout = () => {
           </div>
           
           {/* Desktop Navigation */}
+{/* Desktop Navigation */}
           <nav className="flex-1 overflow-y-auto p-4">
             <div className="space-y-2">
               {visibleRoutes.map((route) => (
                 <NavLink
-                  key={route.id}
+                  key={route.path}
                   to={route.path}
                   className={({ isActive }) =>
                     `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-150 ${
                       isActive
                         ? 'bg-primary text-white shadow-sm'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        : 'text-gray-800 hover:bg-gray-100 hover:text-gray-900'
                     }`
                   }
                 >
@@ -102,7 +103,6 @@ const Layout = () => {
               ))}
             </div>
           </nav>
-        </aside>
 
 {/* Mobile Navigation Drawer */}
         <aside
@@ -110,17 +110,17 @@ const Layout = () => {
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
-          <nav className="h-full overflow-y-auto p-4">
+<nav className="h-full overflow-y-auto p-4">
             <div className="space-y-2">
               {visibleRoutes.map((route) => (
                 <NavLink
-                  key={route.id}
+                  key={route.path}
                   to={route.path}
                   className={({ isActive }) =>
                     `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-150 ${
                       isActive
                         ? 'bg-primary text-white shadow-sm'
-                        : 'text-gray-700 hover:bg-gray-100'
+                        : 'text-gray-800 hover:bg-gray-100 hover:text-gray-900'
                     }`
                   }
                 >
