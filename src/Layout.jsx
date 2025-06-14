@@ -77,12 +77,11 @@ const Layout = () => {
                 <button className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
                   <ApperIcon name="MoreVertical" size={18} />
                 </button>
-              </div>
+</div>
             </div>
           </div>
           
           {/* Desktop Navigation */}
-{/* Desktop Navigation */}
           <nav className="flex-1 overflow-y-auto p-4">
             <div className="space-y-2">
               {visibleRoutes.map((route) => (
@@ -103,8 +102,7 @@ const Layout = () => {
               ))}
             </div>
           </nav>
-
-{/* Mobile Navigation Drawer */}
+        </aside>
         <aside
           className={`lg:hidden fixed left-0 top-16 bottom-0 w-80 glass border-r border-white/20 z-50 transform transition-all duration-500 ease-out shadow-glass ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
