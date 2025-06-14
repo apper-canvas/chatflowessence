@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1",
+    "chatId": "1",
+    "senderId": "1",
+    "content": "Hi Sarah! How are you doing?",
+    "type": "text",
+    "timestamp": "2024-01-15T14:25:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "2",
+    "chatId": "1", 
+    "senderId": "2",
+    "content": "Hello! I'm doing great, thanks for asking 😊",
+    "type": "text",
+    "timestamp": "2024-01-15T14:27:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "3",
+    "chatId": "1",
+    "senderId": "2",
+    "content": "Hey, how's your day going?",
+    "type": "text",
+    "timestamp": "2024-01-15T14:30:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "4",
+    "chatId": "2",
+    "senderId": "3",
+    "content": "Hey team! Ready for tomorrow's presentation?",
+    "type": "text",
+    "timestamp": "2024-01-15T13:30:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "5",
+    "chatId": "2",
+    "senderId": "1",
+    "content": "Yes, I've finished the slides. Just need to do a final review.",
+    "type": "text",
+    "timestamp": "2024-01-15T13:32:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "6",
+    "chatId": "2",
+    "senderId": "4",
+    "content": "I've prepared the demo environment. Everything looks good!",
+    "type": "text",
+    "timestamp": "2024-01-15T13:35:00Z",
+    "status": "read", 
+    "mediaUrl": null
+  },
+  {
+    "id": "7",
+    "chatId": "2",
+    "senderId": "5",
+    "content": "Awesome work everyone! I'm confident we'll nail it 🚀",
+    "type": "text",
+    "timestamp": "2024-01-15T13:40:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "8",
+    "chatId": "2",
+    "senderId": "4",
+    "content": "Perfect! See you all tomorrow at 3 PM 🎉",
+    "type": "text",
+    "timestamp": "2024-01-15T13:45:00Z",
+    "status": "delivered",
+    "mediaUrl": null
+  },
+  {
+    "id": "9",
+    "chatId": "3",
+    "senderId": "6",
+    "content": "Hi! I'm sending you the documents we discussed.",
+    "type": "text",
+    "timestamp": "2024-01-15T12:15:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "10",
+    "chatId": "3",
+    "senderId": "6",
+    "content": "Project_Requirements.pdf",
+    "type": "file",
+    "timestamp": "2024-01-15T12:16:00Z",
+    "status": "read",
+    "mediaUrl": "https://via.placeholder.com/400x300/128C7E/FFFFFF?text=PDF+Document"
+  },
+  {
+    "id": "11",
+    "chatId": "3",
+    "senderId": "6",
+    "content": "Budget_Analysis.xlsx",
+    "type": "file",
+    "timestamp": "2024-01-15T12:17:00Z",
+    "status": "read",
+    "mediaUrl": "https://via.placeholder.com/400x300/25D366/FFFFFF?text=Excel+File"
+  },
+  {
+    "id": "12",
+    "chatId": "3",
+    "senderId": "1",
+    "content": "Thanks for sharing those documents!",
+    "type": "text",
+    "timestamp": "2024-01-15T12:20:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "13",
+    "chatId": "4",
+    "senderId": "1",  
+    "content": "Hey Mike! Long time no see.",
+    "type": "text",
+    "timestamp": "2024-01-15T11:05:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "14",
+    "chatId": "4",
+    "senderId": "7",
+    "content": "Hey! Yeah, it's been way too long. How have you been?",
+    "type": "text",
+    "timestamp": "2024-01-15T11:08:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "15",
+    "chatId": "4",
+    "senderId": "7",
+    "content": "Let's catch up over coffee this weekend",
+    "type": "text",
+    "timestamp": "2024-01-15T11:10:00Z",
+    "status": "delivered",
+    "mediaUrl": null
+  },
+  {
+    "id": "16",
+    "chatId": "5",
+    "senderId": "2",
+    "content": "What's everyone up to this weekend?",
+    "type": "text",
+    "timestamp": "2024-01-15T10:20:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "17",
+    "chatId": "5",
+    "senderId": "3",
+    "content": "I was thinking we could go hiking if the weather's nice!",
+    "type": "text",
+    "timestamp": "2024-01-15T10:25:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "18",
+    "chatId": "5",
+    "senderId": "1",
+    "content": "That sounds amazing! I know a perfect trail nearby.",
+    "type": "text",
+    "timestamp": "2024-01-15T10:27:00Z",
+    "status": "read",
+    "mediaUrl": null
+  },
+  {
+    "id": "19",
+    "chatId": "5",
+    "senderId": "1",
+    "content": "https://via.placeholder.com/400x300/34B7F1/FFFFFF?text=Hiking+Trail+Photo",
+    "type": "image",
+    "timestamp": "2024-01-15T10:28:00Z",
+    "status": "read",
+    "mediaUrl": "https://via.placeholder.com/400x300/34B7F1/FFFFFF?text=Hiking+Trail+Photo"
+  },
+  {
+    "id": "20",
+    "chatId": "5",
+    "senderId": "8",
+    "content": "Great idea! I'm in 👍",
+    "type": "text",
+    "timestamp": "1/15/2024 10:30:00 AMZ",
+    "status": "read",
+    "mediaUrl": null
+  }
+]

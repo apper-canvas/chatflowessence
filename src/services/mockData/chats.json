@@ -1,0 +1,77 @@
+[
+  {
+    "id": "1",
+    "type": "individual",
+    "participants": ["1", "2"],
+    "lastMessage": {
+      "id": "3",
+      "content": "Hey, how's your day going?",
+      "timestamp": "2024-01-15T14:30:00Z",
+      "senderId": "2",
+      "status": "read"
+    },
+    "unreadCount": 0,
+    "groupName": null,
+    "groupAvatar": null
+  },
+  {
+    "id": "2",
+    "type": "group",
+    "participants": ["1", "3", "4", "5"],
+    "lastMessage": {
+      "id": "8", 
+      "content": "Perfect! See you all tomorrow at 3 PM 🎉",
+      "timestamp": "2024-01-15T13:45:00Z",
+      "senderId": "4",
+      "status": "delivered"
+    },
+    "unreadCount": 2,
+    "groupName": "Project Team",
+    "groupAvatar": "https://ui-avatars.com/api/?name=Project+Team&background=25D366&color=fff"
+  },
+  {
+    "id": "3",
+    "type": "individual",
+    "participants": ["1", "6"],
+    "lastMessage": {
+      "id": "12",
+      "content": "Thanks for sharing those documents!",
+      "timestamp": "2024-01-15T12:20:00Z",
+      "senderId": "1",
+      "status": "read"
+    },
+    "unreadCount": 0,
+    "groupName": null,
+    "groupAvatar": null
+  },
+  {
+    "id": "4",
+    "type": "individual",
+    "participants": ["1", "7"],
+    "lastMessage": {
+      "id": "15",
+      "content": "Let's catch up over coffee this weekend",
+      "timestamp": "2024-01-15T11:10:00Z",
+      "senderId": "7",
+      "status": "delivered"
+    },
+    "unreadCount": 1,
+    "groupName": null,
+    "groupAvatar": null
+  },
+  {
+    "id": "5",
+    "type": "group",
+    "participants": ["1", "2", "3", "8"],
+    "lastMessage": {
+      "id": "20",
+      "content": "Great idea! I'm in 👍",
+      "timestamp": "2024-01-15T10:30:00Z",
+      "senderId": "8",
+      "status": "read"
+    },
+    "unreadCount": 0,
+    "groupName": "Weekend Plans",
+    "groupAvatar": "https://ui-avatars.com/api/?name=Weekend+Plans&background=34B7F1&color=fff"
+  }
+]

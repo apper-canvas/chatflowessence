@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "phoneNumber": "+1234567890",
+    "displayName": "You",
+    "avatar": "https://ui-avatars.com/api/?name=You&background=128C7E&color=fff",
+    "status": "Available",
+    "lastSeen": "2024-01-15T14:35:00Z"
+  },
+  {
+    "id": "2",
+    "phoneNumber": "+1234567891",
+    "displayName": "Sarah Johnson",
+    "avatar": "https://ui-avatars.com/api/?name=Sarah+Johnson&background=25D366&color=fff",
+    "status": "Busy with meetings",
+    "lastSeen": "2024-01-15T14:32:00Z"
+  },
+  {
+    "id": "3",
+    "phoneNumber": "+1234567892",
+    "displayName": "Alex Chen",
+    "avatar": "https://ui-avatars.com/api/?name=Alex+Chen&background=34B7F1&color=fff",
+    "status": "At the gym 💪",
+    "lastSeen": "2024-01-15T13:50:00Z"
+  },
+  {
+    "id": "4",
+    "phoneNumber": "+1234567893",
+    "displayName": "Emma Davis",
+    "avatar": "https://ui-avatars.com/api/?name=Emma+Davis&background=FFA500&color=fff",
+    "status": "Working from home",
+    "lastSeen": "2024-01-15T13:47:00Z"
+  },
+  {
+    "id": "5",
+    "phoneNumber": "+1234567894",
+    "displayName": "James Wilson",
+    "avatar": "https://ui-avatars.com/api/?name=James+Wilson&background=DC3545&color=fff",
+    "status": "Available",
+    "lastSeen": "2024-01-15T13:42:00Z"
+  },
+  {
+    "id": "6",
+    "phoneNumber": "+1234567895",
+    "displayName": "Lisa Anderson",
+    "avatar": "https://ui-avatars.com/api/?name=Lisa+Anderson&background=6f42c1&color=fff",
+    "status": "In a meeting",
+    "lastSeen": "2024-01-15T12:25:00Z"
+  },
+  {
+    "id": "7",
+    "phoneNumber": "+1234567896",
+    "displayName": "Mike Thompson",
+    "avatar": "https://ui-avatars.com/api/?name=Mike+Thompson&background=20c997&color=fff",
+    "status": "Coffee break ☕",
+    "lastSeen": "2024-01-15T11:15:00Z"
+  },
+  {
+    "id": "8",
+    "phoneNumber": "+1234567897",
+    "displayName": "Rachel Green",
+    "avatar": "https://ui-avatars.com/api/?name=Rachel+Green&background=fd7e14&color=fff",
+    "status": "Available",
+    "lastSeen": "2024-01-15T10:32:00Z"
+  }
+]
