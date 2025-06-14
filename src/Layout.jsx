@@ -6,6 +6,7 @@ import { routes } from "@/config/routes";
 const Layout = () => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
   
   const visibleRoutes = Object.values(routes).filter(route => !route.hidden);
   const currentRoute = Object.values(routes).find(route => {
@@ -20,7 +21,20 @@ const Layout = () => {
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsMoreMenuOpen(false);
   }, [location.pathname]);
+
+  // Close more menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMoreMenuOpen && !event.target.closest('.more-menu-container')) {
+        setIsMoreMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMoreMenuOpen]);
 
   const isOnChatView = location.pathname.startsWith('/chat/');
 
@@ -70,14 +84,55 @@ const Layout = () => {
           <div className="flex-shrink-0 h-16 bg-gradient-primary shadow-lg border-b border-white/20">
             <div className="flex items-center justify-between h-full px-6">
               <h1 className="text-white text-xl font-bold float-animation">ChatFlow</h1>
-              <div className="flex items-center space-x-2">
+<div className="flex items-center space-x-2">
                 <button className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
                   <ApperIcon name="Search" size={18} />
                 </button>
-                <button className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
-                  <ApperIcon name="MoreVertical" size={18} />
-                </button>
-</div>
+                <div className="relative more-menu-container">
+                  <button 
+                    onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+                    className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+                  >
+                    <ApperIcon name="MoreVertical" size={18} />
+                  </button>
+                  
+                  {/* More Menu Dropdown */}
+                  {isMoreMenuOpen && (
+                    <div className="absolute top-12 right-0 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                      <button
+                        onClick={() => {
+                          setIsMoreMenuOpen(false);
+                          // Handle settings action
+                        }}
+                        className="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-3"
+                      >
+                        <ApperIcon name="Settings" size={16} />
+                        <span>Settings</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsMoreMenuOpen(false);
+                          // Handle help action
+                        }}
+                        className="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-3"
+                      >
+                        <ApperIcon name="HelpCircle" size={16} />
+                        <span>Help & Support</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setIsMoreMenuOpen(false);
+                          // Handle about action
+                        }}
+                        className="w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-3"
+                      >
+                        <ApperIcon name="Info" size={16} />
+                        <span>About</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
           
