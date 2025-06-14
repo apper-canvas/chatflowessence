@@ -258,10 +258,10 @@ return (
       {/* Chat Header */}
       <ChatHeader chat={chat} users={users} />
       {/* Messages Container */}
-      <div
-        ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto chat-messages p-4 space-y-1"
-      >
+<div
+          ref={messagesContainerRef}
+          className="flex-1 overflow-y-auto chat-messages p-4 space-y-1 relative z-10"
+        >
         <AnimatePresence>
           {messages.length === 0 ? (
             <motion.div

@@ -156,15 +156,15 @@ const handleMoreOptions = () => {
   };
 return (
 <motion.header
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`
-        flex items-center justify-between p-4 glass border-b border-white/20 shadow-soft backdrop-blur-md relative
-        ${className}
-      `}
-      {...props}
-    >
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className={`
+          flex items-center justify-between p-4 glass border-b border-white/20 shadow-soft backdrop-blur-md relative z-50
+          ${className}
+        `}
+        {...props}
+      >
       <div className="flex items-center space-x-4 flex-1 min-w-0">
         <motion.button
           whileHover={{ scale: 1.1 }}
