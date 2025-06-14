@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { formatDistanceToNow } from 'date-fns';
-import { toast } from 'react-toastify';
-import Avatar from '@/components/atoms/Avatar';
-import ApperIcon from '@/components/ApperIcon';
+import React, { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { formatDistanceToNow } from "date-fns";
+import { toast } from "react-toastify";
+import Avatar from "@/components/atoms/Avatar";
+import ApperIcon from "@/components/ApperIcon";
 const ChatHeader = ({ 
   chat, 
   users = [],
@@ -155,12 +155,12 @@ const handleMoreOptions = () => {
     toast.info('Report submitted. Thank you for helping keep our community safe.');
   };
 return (
-    <motion.header
+<motion.header
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={`
-        flex items-center justify-between p-4 glass border-b border-white/20 shadow-soft backdrop-blur-md
+        flex items-center justify-between p-4 glass border-b border-white/20 shadow-soft backdrop-blur-md relative
         ${className}
       `}
       {...props}
@@ -243,49 +243,37 @@ return (
                 transition={{ duration: 0.15, ease: "easeOut" }}
                 className="absolute right-0 top-full mt-2 w-48 glass border border-white/20 rounded-lg shadow-lg z-50 overflow-hidden"
               >
-                <div className="py-1">
-                  {chat?.type === 'individual' && (
-                    <button
-                      onClick={handleViewProfile}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors"
-                    >
-                      <ApperIcon name="User" size={16} />
-                      <span>View Profile</span>
-                    </button>
-                  )}
-                  
-                  {chat?.type === 'group' && (
-                    <button
-                      onClick={handleViewProfile}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors"
-                    >
-                      <ApperIcon name="Users" size={16} />
-                      <span>Group Info</span>
-                    </button>
-                  )}
-
+<div className="py-2">
                   <button
-                    onClick={handleMuteChat}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors"
+                    onClick={handleViewProfile}
+                    className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3"
                   >
-                    <ApperIcon name="Bell" size={16} />
-                    <span>Mute Chat</span>
+                    <ApperIcon name="User" size={16} />
+                    <span>{chat?.type === 'group' ? 'Group Info' : 'View Profile'}</span>
                   </button>
-
+                  
+                  <button
+                    onClick={chat?.isMuted ? handleUnmuteChat : handleMuteChat}
+                    className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3"
+                  >
+                    <ApperIcon name={chat?.isMuted ? "VolumeX" : "Volume2"} size={16} />
+                    <span>{chat?.isMuted ? 'Unmute Chat' : 'Mute Chat'}</span>
+                  </button>
+                  
                   <button
                     onClick={handleClearChat}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors"
+                    className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3"
                   >
                     <ApperIcon name="Trash2" size={16} />
                     <span>Clear Chat</span>
                   </button>
 
-                  <hr className="border-gray-200 my-1" />
+                  <hr className="border-white/20 my-1" />
 
                   {chat?.type === 'individual' && (
                     <button
                       onClick={handleBlockUser}
-                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-3 transition-colors"
+                      className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 flex items-center space-x-3 transition-colors"
                     >
                       <ApperIcon name="Shield" size={16} />
                       <span>Block User</span>
@@ -294,7 +282,7 @@ return (
 
                   <button
                     onClick={handleReportChat}
-                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-3 transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 flex items-center space-x-3 transition-colors"
                   >
                     <ApperIcon name="Flag" size={16} />
                     <span>Report</span>

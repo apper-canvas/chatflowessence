@@ -131,7 +131,7 @@ const Layout = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-hidden bg-background">
+<main className="flex-1 bg-background relative">
           <Outlet />
         </main>
       </div>
