@@ -235,19 +235,18 @@ return (
 
           <AnimatePresence>
             {showDropdown && (
-<motion.div
+              <motion.div
                 ref={dropdownRef}
                 initial={{ opacity: 0, scale: 0.95, y: -10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: -10 }}
                 transition={{ duration: 0.15, ease: "easeOut" }}
-                className="fixed right-4 w-48 glass border border-white/20 rounded-lg shadow-xl backdrop-blur-xl z-[10000] overflow-hidden"
+                className="absolute right-0 top-full mt-2 w-48 glass border border-white/20 rounded-lg shadow-xl backdrop-blur-xl z-50 overflow-hidden"
                 style={{
                   boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
                   isolation: 'isolate',
-                  transform: 'translateZ(0) translate3d(0, 0, 0)',
+                  transform: 'translateZ(0)',
                   maxHeight: 'calc(100vh - 120px)',
-                  top: 'max(4.5rem, min(5rem, calc(100vh - 350px)))',
                   willChange: 'transform, opacity'
                 }}
               >
