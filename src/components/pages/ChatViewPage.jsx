@@ -254,13 +254,17 @@ const ChatViewPage = () => {
   }
 
 return (
-<div className="h-full flex flex-col bg-gradient-to-br from-background via-background-secondary to-background-tertiary relative">
+<div className="h-full flex flex-col bg-gradient-to-br from-background via-background-secondary to-background-tertiary relative isolate">
       {/* Chat Header */}
       <ChatHeader chat={chat} users={users} />
       {/* Messages Container */}
 <div
           ref={messagesContainerRef}
-          className="flex-1 overflow-y-auto chat-messages p-4 space-y-1 relative z-10"
+          className="flex-1 overflow-y-auto chat-messages p-4 space-y-1 relative z-20 isolate"
+          style={{ 
+            isolation: 'isolate',
+            transform: 'translateZ(0)' // Force hardware acceleration and new stacking context
+          }}
         >
         <AnimatePresence>
           {messages.length === 0 ? (

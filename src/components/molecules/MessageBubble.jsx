@@ -1,13 +1,13 @@
-import { motion } from 'framer-motion';
-import { formatDistanceToNow } from 'date-fns';
-import ApperIcon from '@/components/ApperIcon';
-import Avatar from '@/components/atoms/Avatar';
+import { motion } from 'framer-motion'
+import { formatDistanceToNow } from 'date-fns'
+import ApperIcon from '@/components/ApperIcon'
+import Avatar from '@/components/atoms/Avatar'
 
 const MessageBubble = ({ 
   message, 
   isOwn = false, 
   showAvatar = false, 
-  sender,
+  sender = null,
   className = '',
   ...props 
 }) => {

@@ -243,7 +243,11 @@ return (
                 transition={{ duration: 0.15, ease: "easeOut" }}
                 className="fixed right-4 top-20 w-48 glass border border-white/20 rounded-lg shadow-xl backdrop-blur-xl z-[9999] overflow-hidden"
                 style={{
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)'
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+                  isolation: 'isolate',
+                  transform: 'translateZ(0)',
+                  maxHeight: 'calc(100vh - 100px)', // Prevent dropdown from extending too far down
+                  top: 'min(5rem, calc(100vh - 400px))' // Dynamic top positioning to avoid overlap
                 }}
               >
 <div className="py-2">
