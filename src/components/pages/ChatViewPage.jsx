@@ -254,10 +254,9 @@ const ChatViewPage = () => {
   }
 
 return (
-<div className="h-full flex flex-col bg-gradient-to-br from-background via-background-secondary to-background-tertiary">
+<div className="h-full flex flex-col bg-gradient-to-br from-background via-background-secondary to-background-tertiary relative">
       {/* Chat Header */}
       <ChatHeader chat={chat} users={users} />
-      
       {/* Messages Container */}
       <div
         ref={messagesContainerRef}
