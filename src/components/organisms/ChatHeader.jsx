@@ -113,11 +113,21 @@ const navigate = useNavigate();
   };
 
 const handleMoreOptions = () => {
-    if (!showDropdown && buttonRef.current) {
+    // Always recalculate position when opening dropdown
+    if (buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const dropdownWidth = 192; // w-48 = 192px
+      
+      // Calculate left position, ensuring dropdown stays within viewport
+      const leftPosition = Math.min(
+        rect.right - dropdownWidth,
+        viewportWidth - dropdownWidth - 16 // 16px margin from edge
+      );
+      
       setDropdownPosition({
         top: rect.bottom + 8,
-        left: rect.right - 192 // 192px is the dropdown width (w-48)
+        left: Math.max(16, leftPosition) // Minimum 16px from left edge
       });
     }
     setShowDropdown(!showDropdown);
@@ -271,17 +281,17 @@ return (
                         duration: 0.15,
                         ease: "easeOut"
                     }}
-                    className="fixed w-48 glass border border-white/20 rounded-lg shadow-xl backdrop-blur-xl overflow-hidden"
-                    style={{
-                        top: dropdownPosition.top || 0,
-                        left: dropdownPosition.left || 0,
+style={{
+                        position: 'fixed',
+                        top: `${dropdownPosition.top || 0}px`,
+                        left: `${dropdownPosition.left || 0}px`,
                         zIndex: 9999,
-                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+                        minWidth: '192px',
                         isolation: "isolate",
                         transform: "translateZ(0)",
-                        maxHeight: "calc(100vh - 120px)",
-                        minWidth: "12rem"
-                    }}>
+                        maxHeight: "calc(100vh - 120px)"
+                    }}
+                    className="bg-white/90 backdrop-blur-md rounded-lg shadow-xl border border-white/20">
                     <div className="py-2">
                         <button
                             onClick={handleViewProfile}
