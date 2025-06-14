@@ -1,9 +1,10 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
+import { toast } from 'react-toastify';
 import Avatar from '@/components/atoms/Avatar';
 import ApperIcon from '@/components/ApperIcon';
-
 const ChatHeader = ({ 
   chat, 
   users = [],
@@ -11,7 +12,35 @@ const ChatHeader = ({
   ...props 
 }) => {
   const navigate = useNavigate();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
   
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target) &&
+          buttonRef.current && !buttonRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        setShowDropdown(false);
+      }
+    };
+
+    if (showDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscapeKey);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
+  }, [showDropdown]);
   const getDisplayName = () => {
     if (chat?.type === 'group') {
       return chat.groupName;
@@ -82,11 +111,49 @@ const ChatHeader = ({
     console.log('Initiating video call...');
   };
 
-  const handleMoreOptions = () => {
-    // Simulate more options
-    console.log('Opening more options...');
+const handleMoreOptions = () => {
+    setShowDropdown(!showDropdown);
   };
 
+  const handleMuteChat = () => {
+    setShowDropdown(false);
+    toast.success('Chat muted');
+  };
+
+  const handleUnmuteChat = () => {
+    setShowDropdown(false);
+    toast.success('Chat unmuted');
+  };
+
+  const handleViewProfile = () => {
+    setShowDropdown(false);
+    if (chat?.type === 'group') {
+      toast.info('Group info feature coming soon');
+    } else {
+      toast.info('Profile view feature coming soon');
+    }
+  };
+
+  const handleClearChat = () => {
+    setShowDropdown(false);
+    if (window.confirm('Are you sure you want to clear this chat? This action cannot be undone.')) {
+      toast.success('Chat cleared');
+    }
+  };
+
+  const handleBlockUser = () => {
+    setShowDropdown(false);
+    if (chat?.type === 'individual') {
+      if (window.confirm('Are you sure you want to block this user?')) {
+        toast.success('User blocked');
+      }
+    }
+  };
+
+  const handleReportChat = () => {
+    setShowDropdown(false);
+    toast.info('Report submitted. Thank you for helping keep our community safe.');
+  };
 return (
     <motion.header
       initial={{ opacity: 0, y: -10 }}
@@ -151,14 +218,92 @@ return (
           </>
         )}
         
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={handleMoreOptions}
-          className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-        >
-          <ApperIcon name="MoreVertical" size={20} />
-        </motion.button>
+<div className="relative">
+          <motion.button
+            ref={buttonRef}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={handleMoreOptions}
+            className={`p-2 rounded-lg transition-colors ${
+              showDropdown 
+                ? 'text-primary bg-primary/10' 
+                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+            }`}
+          >
+            <ApperIcon name="MoreVertical" size={20} />
+          </motion.button>
+
+          <AnimatePresence>
+            {showDropdown && (
+              <motion.div
+                ref={dropdownRef}
+                initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="absolute right-0 top-full mt-2 w-48 glass border border-white/20 rounded-lg shadow-lg z-50 overflow-hidden"
+              >
+                <div className="py-1">
+                  {chat?.type === 'individual' && (
+                    <button
+                      onClick={handleViewProfile}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors"
+                    >
+                      <ApperIcon name="User" size={16} />
+                      <span>View Profile</span>
+                    </button>
+                  )}
+                  
+                  {chat?.type === 'group' && (
+                    <button
+                      onClick={handleViewProfile}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors"
+                    >
+                      <ApperIcon name="Users" size={16} />
+                      <span>Group Info</span>
+                    </button>
+                  )}
+
+                  <button
+                    onClick={handleMuteChat}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors"
+                  >
+                    <ApperIcon name="Bell" size={16} />
+                    <span>Mute Chat</span>
+                  </button>
+
+                  <button
+                    onClick={handleClearChat}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors"
+                  >
+                    <ApperIcon name="Trash2" size={16} />
+                    <span>Clear Chat</span>
+                  </button>
+
+                  <hr className="border-gray-200 my-1" />
+
+                  {chat?.type === 'individual' && (
+                    <button
+                      onClick={handleBlockUser}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-3 transition-colors"
+                    >
+                      <ApperIcon name="Shield" size={16} />
+                      <span>Block User</span>
+                    </button>
+                  )}
+
+                  <button
+                    onClick={handleReportChat}
+                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-3 transition-colors"
+                  >
+                    <ApperIcon name="Flag" size={16} />
+                    <span>Report</span>
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </motion.header>
   );
