@@ -164,156 +164,162 @@ const handleMoreOptions = () => {
   };
 return (
 <motion.header
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className={`
+    initial={{
+        opacity: 0,
+        y: -10
+    }}
+    animate={{
+        opacity: 1,
+        y: 0
+    }}
+    transition={{
+        duration: 0.3,
+        ease: "easeOut"
+    }}
+    className={`
           flex items-center justify-between p-4 glass border-b border-white/20 shadow-soft backdrop-blur-md relative z-50
           ${className}
         `}
-        {...props}
-      >
-      <div className="flex items-center space-x-4 flex-1 min-w-0">
+    {...props}>
+    <div className="flex items-center space-x-4 flex-1 min-w-0">
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={handleBack}
-          className="lg:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-        >
-          <ApperIcon name="ArrowLeft" size={20} />
+            whileHover={{
+                scale: 1.1
+            }}
+            whileTap={{
+                scale: 0.9
+            }}
+            onClick={handleBack}
+            className="lg:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+            <ApperIcon name="ArrowLeft" size={20} />
         </motion.button>
-        
         <div className="flex items-center space-x-3 flex-1 min-w-0">
-          <Avatar 
-            src={getDisplayAvatar()} 
-            alt={getDisplayName()}
-            fallback={getDisplayName()}
-            size="lg"
-            online={isOnline()}
-          />
-          
-          <div className="flex-1 min-w-0">
-            <h1 className="text-lg font-semibold text-gray-900 truncate">
-              {getDisplayName()}
-            </h1>
-            <p className={`text-sm truncate ${isOnline() ? 'text-secondary' : 'text-gray-500'}`}>
-              {getStatusText()}
-            </p>
-          </div>
+            <Avatar
+                src={getDisplayAvatar()}
+                alt={getDisplayName()}
+                fallback={getDisplayName()}
+                size="lg"
+                online={isOnline()} />
+            <div className="flex-1 min-w-0">
+                <h1 className="text-lg font-semibold text-gray-900 truncate">
+                    {getDisplayName()}
+                </h1>
+                <p
+                    className={`text-sm truncate ${isOnline() ? "text-secondary" : "text-gray-500"}`}>
+                    {getStatusText()}
+                </p>
+            </div>
         </div>
-      </div>
-      
-      <div className="flex items-center space-x-2 flex-shrink-0">
-        {chat?.type === 'individual' && (
-          <>
+    </div>
+    <div className="flex items-center space-x-2 flex-shrink-0">
+        {chat?.type === "individual" && <>
             <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={handleCall}
-              className="p-2 text-gray-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
-            >
-              <ApperIcon name="Phone" size={20} />
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={handleVideoCall}
-              className="p-2 text-gray-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
-            >
-              <ApperIcon name="Video" size={20} />
-            </motion.button>
-          </>
-        )}
-        
-<div className="relative">
-          <motion.button
-            ref={buttonRef}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={handleMoreOptions}
-            className={`p-2 rounded-lg transition-colors ${
-              showDropdown 
-                ? 'text-primary bg-primary/10' 
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-            }`}
-          >
-            <ApperIcon name="MoreVertical" size={20} />
-          </motion.button>
-
-<AnimatePresence>
-            {showDropdown && createPortal(
-              <motion.div
-                ref={dropdownRef}
-                initial={{ opacity: 0, scale: 0.95, y: -10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                transition={{ duration: 0.15, ease: "easeOut" }}
-                className="fixed w-48 glass border border-white/20 rounded-lg shadow-xl backdrop-blur-xl overflow-hidden"
-                style={{
-                  top: dropdownPosition.top,
-                  left: dropdownPosition.left,
-                  zIndex: 9999,
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
-                  isolation: 'isolate',
-                  transform: 'translateZ(0)',
-                  maxHeight: 'calc(100vh - 120px)',
-                  minWidth: '12rem'
+                whileHover={{
+                    scale: 1.1
                 }}
-              >
-                <div className="py-2">
-                  <button
-                    onClick={handleViewProfile}
-                    className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3"
-                  >
-                    <ApperIcon name="User" size={16} />
-                    <span>{chat?.type === 'group' ? 'Group Info' : 'View Profile'}</span>
-                  </button>
-                  
-                  <button
-                    onClick={chat?.isMuted ? handleUnmuteChat : handleMuteChat}
-                    className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3"
-                  >
-                    <ApperIcon name={chat?.isMuted ? "VolumeX" : "Volume2"} size={16} />
-                    <span>{chat?.isMuted ? 'Unmute Chat' : 'Mute Chat'}</span>
-                  </button>
-                  
-                  <button
-                    onClick={handleClearChat}
-                    className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3"
-                  >
-                    <ApperIcon name="Trash2" size={16} />
-                    <span>Clear Chat</span>
-                  </button>
-
-                  <hr className="border-white/20 my-1" />
-
-                  {chat?.type === 'individual' && (
-                    <button
-                      onClick={handleBlockUser}
-                      className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 flex items-center space-x-3 transition-colors"
-                    >
-                      <ApperIcon name="Shield" size={16} />
-                      <span>Block User</span>
-                    </button>
-                  )}
-
-                  <button
-                    onClick={handleReportChat}
-                    className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 flex items-center space-x-3 transition-colors"
-                  >
-                    <ApperIcon name="Flag" size={16} />
-                    <span>Report</span>
-                  </button>
-                </div>
-              </motion.div>,
-              document.body
-            )}
-            )}
-          </AnimatePresence>
+                whileTap={{
+                    scale: 0.9
+                }}
+                onClick={handleCall}
+                className="p-2 text-gray-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
+                <ApperIcon name="Phone" size={20} />
+            </motion.button>
+            <motion.button
+                whileHover={{
+                    scale: 1.1
+                }}
+                whileTap={{
+                    scale: 0.9
+                }}
+                onClick={handleVideoCall}
+                className="p-2 text-gray-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors">
+                <ApperIcon name="Video" size={20} />
+            </motion.button>
+        </>}
+        <div className="relative">
+            <motion.button
+                ref={buttonRef}
+                whileHover={{
+                    scale: 1.1
+                }}
+                whileTap={{
+                    scale: 0.9
+                }}
+                onClick={handleMoreOptions}
+                className={`p-2 rounded-lg transition-colors ${showDropdown ? "text-primary bg-primary/10" : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"}`}>
+                <ApperIcon name="MoreVertical" size={20} />
+            </motion.button>
+            <AnimatePresence>
+                {showDropdown && createPortal(<motion.div
+                    ref={dropdownRef}
+                    initial={{
+                        opacity: 0,
+                        scale: 0.95,
+                        y: -10
+                    }}
+                    animate={{
+                        opacity: 1,
+                        scale: 1,
+                        y: 0
+                    }}
+                    exit={{
+                        opacity: 0,
+                        scale: 0.95,
+                        y: -10
+                    }}
+                    transition={{
+                        duration: 0.15,
+                        ease: "easeOut"
+                    }}
+                    className="fixed w-48 glass border border-white/20 rounded-lg shadow-xl backdrop-blur-xl overflow-hidden"
+                    style={{
+                        top: dropdownPosition.top || 0,
+                        left: dropdownPosition.left || 0,
+                        zIndex: 9999,
+                        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)",
+                        isolation: "isolate",
+                        transform: "translateZ(0)",
+                        maxHeight: "calc(100vh - 120px)",
+                        minWidth: "12rem"
+                    }}>
+                    <div className="py-2">
+                        <button
+                            onClick={handleViewProfile}
+                            className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3">
+                            <ApperIcon name="User" size={16} />
+                            <span>{chat?.type === "group" ? "Group Info" : "View Profile"}</span>
+                        </button>
+                        <button
+                            onClick={chat?.isMuted ? handleUnmuteChat : handleMuteChat}
+                            className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3">
+                            <ApperIcon name={chat?.isMuted ? "VolumeX" : "Volume2"} size={16} />
+                            <span>{chat?.isMuted ? "Unmute Chat" : "Mute Chat"}</span>
+                        </button>
+                        <button
+                            onClick={handleClearChat}
+                            className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3">
+                            <ApperIcon name="Trash2" size={16} />
+                            <span>Clear Chat</span>
+                        </button>
+                        <hr className="border-white/20 my-1" />
+                        {chat?.type === "individual" && <button
+                            onClick={handleBlockUser}
+                            className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 flex items-center space-x-3 transition-colors">
+                            <ApperIcon name="Shield" size={16} />
+                            <span>Block User</span>
+                        </button>}
+                        <button
+                            onClick={handleReportChat}
+                            className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-500/10 flex items-center space-x-3 transition-colors">
+                            <ApperIcon name="Flag" size={16} />
+                            <span>Report</span>
+                        </button>
+                    </div>
+                </motion.div>, document.body)}
+            </AnimatePresence>
         </div>
-      </div>
-    </motion.header>
+    </div>
+</motion.header>
   );
 };
 
