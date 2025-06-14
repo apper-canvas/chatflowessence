@@ -81,22 +81,22 @@ const Layout = () => {
             </div>
           </div>
           
-          {/* Desktop Navigation */}
+{/* Desktop Navigation */}
           <nav className="flex-1 overflow-y-auto p-4">
             <div className="space-y-2">
               {visibleRoutes.map((route) => (
                 <NavLink
-                  key={route.path}
+                  key={route.id}
                   to={route.path}
                   className={({ isActive }) =>
                     `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-150 ${
                       isActive
-                        ? 'bg-primary text-white shadow-sm'
-                        : 'text-gray-800 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'bg-primary text-primary-foreground shadow-sm font-medium'
+                        : 'text-gray-800 hover:bg-white/10 hover:text-gray-900'
                     }`
                   }
                 >
-                  <ApperIcon name={route.icon} size={20} />
+                  <ApperIcon name={route.icon} size={18} />
                   <span className="font-medium">{route.label}</span>
                 </NavLink>
               ))}
@@ -107,22 +107,22 @@ const Layout = () => {
           className={`lg:hidden fixed left-0 top-16 bottom-0 w-80 glass border-r border-white/20 z-50 transform transition-all duration-500 ease-out shadow-glass ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
-        >
-<nav className="h-full overflow-y-auto p-4">
+>
+          <nav className="h-full overflow-y-auto p-4">
             <div className="space-y-2">
               {visibleRoutes.map((route) => (
                 <NavLink
-                  key={route.path}
+                  key={route.id}
                   to={route.path}
                   className={({ isActive }) =>
                     `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-150 ${
                       isActive
-                        ? 'bg-primary text-white shadow-sm'
-                        : 'text-gray-800 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'bg-primary text-primary-foreground shadow-sm font-medium'
+                        : 'text-gray-800 hover:bg-white/10 hover:text-gray-900'
                     }`
                   }
                 >
-                  <ApperIcon name={route.icon} size={20} />
+                  <ApperIcon name={route.icon} size={18} />
                   <span className="font-medium">{route.label}</span>
                 </NavLink>
               ))}

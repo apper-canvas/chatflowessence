@@ -4,20 +4,23 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-theme: {
+  theme: {
     extend: {
       colors: {
         primary: {
-          50: '#e6f7f5',
-          100: '#b3e8e1',
-          200: '#80d9cd',
-          300: '#4dcab9',
-          400: '#26b5a3',
-          500: '#128C7E',
-          600: '#0f7a6e',
-          700: '#0c675e',
-          800: '#09544e',
-          900: '#06413e'
+          DEFAULT: '#3B82F6',
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3B82F6',
+          600: '#2563EB',
+          700: '#1D4ED8',
+          800: '#1E40AF',
+          900: '#1E3A8A',
+950: '#172554',
+          foreground: '#FFFFFF'
         },
         secondary: {
           50: '#e8f9f0',
@@ -43,17 +46,8 @@ theme: {
           800: '#1c7ea9',
           900: '#146b91'
         },
-        surface: '#FFFFFF',
-        background: {
-          DEFAULT: '#F8FAFC',
-          secondary: '#F1F5F9',
-          tertiary: '#E2E8F0'
-        },
-        success: '#25D366',
-        warning: '#F59E0B',
-        error: '#EF4444',
-        info: '#34B7F1',
         surface: {
+          DEFAULT: '#FFFFFF',
           50: '#f8fafc',
           100: '#f1f5f9',
           200: '#e2e8f0',
@@ -64,7 +58,16 @@ theme: {
           700: '#334155',
           800: '#1e293b',
           900: '#0f172a'
-        }
+        },
+        background: {
+          DEFAULT: '#F8FAFC',
+          secondary: '#F1F5F9',
+          tertiary: '#E2E8F0'
+        },
+        success: '#25D366',
+        warning: '#F59E0B',
+        error: '#EF4444',
+        info: '#34B7F1'
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
@@ -125,7 +128,7 @@ theme: {
         'glass': '0 8px 32px rgba(31, 38, 135, 0.37)',
         'soft': '0 2px 15px rgba(0, 0, 0, 0.08)'
       }
-    },
+    }
   },
-  plugins: [],
+  plugins: []
 }
