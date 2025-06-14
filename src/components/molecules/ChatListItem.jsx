@@ -74,14 +74,20 @@ const ChatListItem = ({
     navigate(`/chat/${chat.id}`);
   };
 
-  return (
+return (
     <motion.div
-      whileHover={{ backgroundColor: '#f9fafb' }}
+      whileHover={{ 
+        backgroundColor: 'rgba(37, 211, 102, 0.05)',
+        scale: 1.02,
+        x: 4
+      }}
       whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
       onClick={handleClick}
       className={`
-        flex items-center space-x-4 p-4 cursor-pointer transition-colors duration-150
-        border-b border-gray-100 last:border-b-0 max-w-full overflow-hidden
+        flex items-center space-x-4 p-4 cursor-pointer transition-all duration-200
+        border-b border-gray-100/50 last:border-b-0 max-w-full overflow-hidden
+        hover:shadow-soft rounded-lg mx-2 my-1
         ${className}
       `}
       {...props}
@@ -107,10 +113,16 @@ const ChatListItem = ({
                 {formatTime(chat.lastMessage.timestamp)}
               </span>
             )}
-            {chat.unreadCount > 0 && (
-              <Badge variant="secondary" size="xs">
-                {chat.unreadCount > 99 ? '99+' : chat.unreadCount}
-              </Badge>
+{chat.unreadCount > 0 && (
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="pulse-glow"
+              >
+                <Badge variant="secondary" size="xs">
+                  {chat.unreadCount > 99 ? '99+' : chat.unreadCount}
+                </Badge>
+              </motion.div>
             )}
           </div>
         </div>

@@ -13,16 +13,15 @@ const Button = ({
   className = '',
   ...props 
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2';
+const baseClasses = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 transform';
   
   const variants = {
-    primary: 'bg-primary text-white hover:bg-primary/90 focus:ring-primary/50 shadow-sm',
-    secondary: 'bg-secondary text-white hover:bg-secondary/90 focus:ring-secondary/50 shadow-sm',
-    outline: 'border border-gray-300 text-gray-700 bg-white hover:bg-gray-50 focus:ring-primary/50',
-    ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-primary/50',
-    danger: 'bg-error text-white hover:bg-error/90 focus:ring-error/50 shadow-sm'
+    primary: 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:from-primary-600 hover:to-primary-700 focus:ring-primary-400 shadow-lg hover:shadow-glow-primary',
+    secondary: 'bg-gradient-to-r from-secondary-500 to-secondary-600 text-white hover:from-secondary-600 hover:to-secondary-700 focus:ring-secondary-400 shadow-lg hover:shadow-glow',
+    outline: 'border-2 border-primary-300 text-primary-700 bg-white/80 hover:bg-primary-50 hover:border-primary-400 focus:ring-primary-300 backdrop-blur-sm',
+    ghost: 'text-gray-700 hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 focus:ring-primary-300 hover:text-primary-700',
+    danger: 'bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 focus:ring-red-400 shadow-lg hover:shadow-xl'
   };
-  
   const sizes = {
     sm: 'px-3 py-2 text-sm',
     md: 'px-4 py-2.5 text-sm',
@@ -40,10 +39,17 @@ const Button = ({
     onClick?.(e);
   };
 
-  return (
+return (
     <motion.button
-      whileHover={!disabled && !loading ? { scale: 1.05 } : {}}
-      whileTap={!disabled && !loading ? { scale: 0.98 } : {}}
+      whileHover={!disabled && !loading ? { 
+        scale: 1.05, 
+        y: -2,
+        transition: { duration: 0.2 }
+      } : {}}
+      whileTap={!disabled && !loading ? { 
+        scale: 0.95,
+        transition: { duration: 0.1 }
+      } : {}}
       className={buttonClasses}
       onClick={handleClick}
       disabled={disabled || loading}

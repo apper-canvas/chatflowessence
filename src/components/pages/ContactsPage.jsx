@@ -126,12 +126,12 @@ const ContactsPage = () => {
     );
   }
 
-  return (
-    <div className="h-full flex flex-col overflow-hidden bg-white">
+return (
+    <div className="h-full flex flex-col overflow-hidden bg-gradient-to-br from-background via-background-secondary to-background-tertiary">
       {/* Header */}
-      <div className="flex-shrink-0 p-4 bg-white border-b border-gray-200">
+      <div className="flex-shrink-0 p-4 glass border-b border-white/20 shadow-soft">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-xl font-bold text-gray-900">Contacts</h1>
+          <h1 className="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Contacts</h1>
           <Button
             onClick={handleAddContact}
             variant="outline"
@@ -203,17 +203,22 @@ const ContactsPage = () => {
       </div>
 
       {/* Loading overlay when creating chat */}
-      {creatingChat && (
+{creatingChat && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
         >
-          <div className="bg-white rounded-lg p-6 flex items-center space-x-3">
-            <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
-            <span className="text-gray-700">Starting chat...</span>
-          </div>
+          <motion.div 
+            className="glass rounded-2xl p-6 flex items-center space-x-3 shadow-glass"
+            initial={{ scale: 0.8, y: 20 }}
+            animate={{ scale: 1, y: 0 }}
+            transition={{ type: "spring", damping: 20 }}
+          >
+            <div className="w-6 h-6 border-2 border-primary-300/30 border-t-primary-500 rounded-full animate-spin" />
+            <span className="text-gray-700 font-medium">Starting chat...</span>
+          </motion.div>
         </motion.div>
       )}
     </div>

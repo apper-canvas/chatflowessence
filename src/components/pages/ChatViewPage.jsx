@@ -253,13 +253,13 @@ const ChatViewPage = () => {
     );
   }
 
-  return (
-    <div className="h-full flex flex-col overflow-hidden bg-background">
+return (
+    <div className="h-full flex flex-col overflow-hidden bg-gradient-to-br from-background via-background-secondary to-background-tertiary">
       {/* Chat Header */}
       <ChatHeader chat={chat} users={users} />
       
       {/* Messages Container */}
-      <div 
+      <div
         ref={messagesContainerRef}
         className="flex-1 overflow-y-auto chat-messages p-4 space-y-1"
       >

@@ -30,7 +30,7 @@ const Avatar = ({
     '2xl': 'w-5 h-5'
   };
   
-  const avatarClasses = `${sizes[size]} rounded-full bg-gray-300 flex items-center justify-center overflow-hidden relative ${className}`;
+const avatarClasses = `${sizes[size]} rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center overflow-hidden relative shadow-lg hover:shadow-glow-primary transition-all duration-200 ${className}`;
   
   const getInitials = (name) => {
     if (!name) return '?';
@@ -45,8 +45,13 @@ const Avatar = ({
   return (
     <motion.div 
       className={avatarClasses}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.15 }}
+      whileHover={{ 
+        scale: 1.1,
+        rotate: [0, -5, 5, 0],
+        transition: { duration: 0.3 }
+      }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ duration: 0.2 }}
       {...props}
     >
       {src && !imageError ? (
@@ -61,9 +66,23 @@ const Avatar = ({
           {getInitials(fallback || alt)}
         </div>
       )}
-      
-      {online && (
-        <div className={`absolute bottom-0 right-0 ${onlineIndicatorSizes[size]} bg-secondary border-2 border-white rounded-full`} />
+{online && (
+        <motion.div 
+          className={`absolute bottom-0 right-0 ${onlineIndicatorSizes[size]} bg-gradient-to-r from-secondary-400 to-secondary-600 border-2 border-white rounded-full shadow-lg`}
+          animate={{ 
+            scale: [1, 1.2, 1],
+            boxShadow: [
+              '0 0 0px rgba(37, 211, 102, 0.4)',
+              '0 0 10px rgba(37, 211, 102, 0.8)',
+              '0 0 0px rgba(37, 211, 102, 0.4)'
+            ]
+          }}
+          transition={{ 
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       )}
     </motion.div>
   );

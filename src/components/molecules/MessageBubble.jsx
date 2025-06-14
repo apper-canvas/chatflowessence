@@ -99,13 +99,17 @@ const MessageBubble = ({
             </span>
           )}
           
-          <motion.div
-            whileHover={{ scale: 1.02 }}
+<motion.div
+            whileHover={{ 
+              scale: 1.02,
+              y: -1,
+              transition: { duration: 0.2 }
+            }}
             className={`
-              px-4 py-2 rounded-message shadow-sm max-w-full min-w-0
+              px-4 py-3 rounded-message shadow-soft max-w-full min-w-0 backdrop-blur-sm
               ${isOwn 
-                ? 'bg-gradient-to-r from-primary to-primary/90 text-white rounded-br-md' 
-                : 'bg-white text-gray-900 border border-gray-200 rounded-bl-md'
+                ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-br-md shadow-glow-primary' 
+                : 'glass text-gray-900 border border-white/20 rounded-bl-md'
               }
             `}
           >

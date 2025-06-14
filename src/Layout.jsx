@@ -25,9 +25,9 @@ const Layout = () => {
   const isOnChatView = location.pathname.startsWith('/chat/');
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
+<div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-background via-background-secondary to-background-tertiary">
       {/* Mobile Header */}
-      <header className="lg:hidden flex-shrink-0 h-16 bg-primary border-b border-primary/20 z-40">
+      <header className="lg:hidden flex-shrink-0 h-16 bg-gradient-primary shadow-lg border-b border-white/20 z-40">
         <div className="flex items-center justify-between h-full px-4">
           <div className="flex items-center space-x-3">
             {isOnChatView && (
@@ -64,12 +64,12 @@ const Layout = () => {
 
       {/* Main Content Area */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Desktop Sidebar */}
-        <aside className="hidden lg:flex w-80 bg-white border-r border-gray-200 flex-col z-40">
+{/* Desktop Sidebar */}
+        <aside className="hidden lg:flex w-80 glass border-r border-white/20 flex-col z-40 shadow-glass">
           {/* Desktop Header */}
-          <div className="flex-shrink-0 h-16 bg-primary border-b border-primary/20">
+          <div className="flex-shrink-0 h-16 bg-gradient-primary shadow-lg border-b border-white/20">
             <div className="flex items-center justify-between h-full px-6">
-              <h1 className="text-white text-xl font-bold">ChatFlow</h1>
+              <h1 className="text-white text-xl font-bold float-animation">ChatFlow</h1>
               <div className="flex items-center space-x-2">
                 <button className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
                   <ApperIcon name="Search" size={18} />
@@ -104,9 +104,9 @@ const Layout = () => {
           </nav>
         </aside>
 
-        {/* Mobile Navigation Drawer */}
+{/* Mobile Navigation Drawer */}
         <aside
-          className={`lg:hidden fixed left-0 top-16 bottom-0 w-80 bg-white border-r border-gray-200 z-50 transform transition-transform duration-300 ${
+          className={`lg:hidden fixed left-0 top-16 bottom-0 w-80 glass border-r border-white/20 z-50 transform transition-all duration-500 ease-out shadow-glass ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
         >
@@ -138,9 +138,9 @@ const Layout = () => {
         </main>
       </div>
 
-      {/* Mobile Bottom Navigation - Only show when not in chat view */}
+{/* Mobile Bottom Navigation - Only show when not in chat view */}
       {!isOnChatView && (
-        <nav className="lg:hidden flex-shrink-0 bg-white border-t border-gray-200 z-40">
+        <nav className="lg:hidden flex-shrink-0 glass border-t border-white/20 z-40 shadow-soft">
           <div className="flex">
             {visibleRoutes.map((route) => (
               <NavLink
