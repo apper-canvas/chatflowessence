@@ -63,9 +63,9 @@ const Layout = () => {
       )}
 
       {/* Main Content Area */}
-      <div className="flex-1 flex overflow-hidden">
-{/* Desktop Sidebar */}
-        <aside className="hidden lg:flex w-80 glass border-r border-white/20 flex-col z-40 shadow-glass">
+<div className="flex-1 flex overflow-hidden">
+        {/* Desktop Sidebar */}
+        <aside className="hidden lg:flex w-64 glass border-r border-white/20 flex-col z-40 shadow-glass">
           {/* Desktop Header */}
           <div className="flex-shrink-0 h-16 bg-gradient-primary shadow-lg border-b border-white/20">
             <div className="flex items-center justify-between h-full px-6">
@@ -102,12 +102,12 @@ const Layout = () => {
               ))}
             </div>
           </nav>
-        </aside>
+</aside>
         <aside
-          className={`lg:hidden fixed left-0 top-16 bottom-0 w-80 glass border-r border-white/20 z-50 transform transition-all duration-500 ease-out shadow-glass ${
+          className={`lg:hidden fixed left-0 top-16 bottom-0 w-64 glass border-r border-white/20 z-50 transform transition-all duration-500 ease-out shadow-glass ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
->
+        >
           <nav className="h-full overflow-y-auto p-4">
             <div className="space-y-2">
               {visibleRoutes.map((route) => (
