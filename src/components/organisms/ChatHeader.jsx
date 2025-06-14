@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
@@ -11,11 +12,11 @@ const ChatHeader = ({
   className = '',
   ...props 
 }) => {
-  const navigate = useNavigate();
+const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
-  
   // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -112,6 +113,13 @@ const ChatHeader = ({
   };
 
 const handleMoreOptions = () => {
+    if (!showDropdown && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + 8,
+        left: rect.right - 192 // 192px is the dropdown width (w-48)
+      });
+    }
     setShowDropdown(!showDropdown);
   };
 
@@ -233,24 +241,27 @@ return (
             <ApperIcon name="MoreVertical" size={20} />
           </motion.button>
 
-          <AnimatePresence>
-            {showDropdown && (
-<motion.div
-                  ref={dropdownRef}
-                  initial={{ opacity: 0, scale: 0.95, y: -10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: -10 }}
-                  transition={{ duration: 0.15, ease: "easeOut" }}
-                  className="absolute right-0 top-full mt-2 w-48 glass border border-white/20 rounded-lg shadow-xl backdrop-blur-xl z-50 overflow-hidden"
-                  style={{
-                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
-                    isolation: 'isolate',
-                    transform: 'translateZ(0)',
-                    maxHeight: 'calc(100vh - 120px)', // Prevent dropdown from extending beyond viewport
-                    minWidth: '12rem' // Ensure consistent width
-                  }}
+<AnimatePresence>
+            {showDropdown && createPortal(
+              <motion.div
+                ref={dropdownRef}
+                initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                className="fixed w-48 glass border border-white/20 rounded-lg shadow-xl backdrop-blur-xl overflow-hidden"
+                style={{
+                  top: dropdownPosition.top,
+                  left: dropdownPosition.left,
+                  zIndex: 9999,
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+                  isolation: 'isolate',
+                  transform: 'translateZ(0)',
+                  maxHeight: 'calc(100vh - 120px)',
+                  minWidth: '12rem'
+                }}
               >
-<div className="py-2">
+                <div className="py-2">
                   <button
                     onClick={handleViewProfile}
                     className="w-full px-4 py-2 text-left hover:bg-white/10 transition-colors flex items-center space-x-3"
@@ -295,7 +306,9 @@ return (
                     <span>Report</span>
                   </button>
                 </div>
-              </motion.div>
+              </motion.div>,
+              document.body
+            )}
             )}
           </AnimatePresence>
         </div>
