@@ -260,7 +260,7 @@ return (
       {/* Messages Container */}
 <div
           ref={messagesContainerRef}
-          className="flex-1 overflow-y-auto chat-messages p-4 space-y-1 relative z-20 isolate"
+          className="flex-1 overflow-y-auto chat-messages p-4 space-y-1 relative z-10"
           style={{ 
             isolation: 'isolate',
             transform: 'translateZ(0)' // Force hardware acceleration and new stacking context
