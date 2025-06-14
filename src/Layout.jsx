@@ -17,160 +17,148 @@ const Layout = () => {
     return location.pathname === route.path;
   });
 
-  // Determine if we're on a chat view (dynamic route with chatId)
-  const isOnChatView = location.pathname.includes('/chat/') && location.pathname.split('/').length > 2;
-
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  return (
-    <>
-      {/* Background Pattern */}
-      <div className="min-h-screen min-h-dvh flex flex-col bg-gradient-to-br from-background via-background-secondary to-background-tertiary">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10"></div>
-        </div>
+  const isOnChatView = location.pathname.startsWith('/chat/');
 
-        {/* Header */}
-        <header className="flex-shrink-0 h-16 bg-gradient-primary shadow-lg border-b border-white/20">
-          <div className="flex items-center justify-between h-full px-6">
-            <div className="flex items-center space-x-3">
-              {isOnChatView && (
-                <button
-                  onClick={() => window.history.back()}
-                  className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
-                >
-                  <ApperIcon name="ArrowLeft" size={20} />
-                </button>
-              )}
-              <h1 className="text-white text-lg font-semibold">
-                {currentRoute?.label || 'ChatFlow'}
-              </h1>
-            </div>
-            
-            {!isOnChatView && (
+  return (
+<div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-background via-background-secondary to-background-tertiary">
+      {/* Mobile Header */}
+      <header className="lg:hidden flex-shrink-0 h-16 bg-gradient-primary shadow-lg border-b border-white/20 z-40">
+        <div className="flex items-center justify-between h-full px-4">
+          <div className="flex items-center space-x-3">
+            {isOnChatView && (
               <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors lg:hidden"
+                onClick={() => window.history.back()}
+                className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
               >
-                <ApperIcon name={isMobileMenuOpen ? "X" : "Menu"} size={20} />
+                <ApperIcon name="ArrowLeft" size={20} />
               </button>
             )}
+            <h1 className="text-white text-lg font-semibold">
+              {currentRoute?.label || 'ChatFlow'}
+            </h1>
           </div>
-        </header>
-
-        {/* Mobile Menu Overlay */}
-        {isMobileMenuOpen && (
-          <div
-            className="lg:hidden fixed inset-0 bg-black/50 z-40"
-            onClick={() => setIsMobileMenuOpen(false)}
-          />
-        )}
-
-        {/* Main Content Area */}
-        <div className="flex-1 flex">
-          {/* Desktop Sidebar */}
-          <aside className="hidden lg:flex flex-col w-64 glass border-r border-white/20 shadow-glass">
-            <div className="flex-shrink-0 h-16 bg-gradient-primary shadow-lg border-b border-white/20">
-              <div className="flex items-center justify-between h-full px-6">
-                <h1 className="text-white text-xl font-bold float-animation">ChatFlow</h1>
-                <div className="flex items-center space-x-2">
-                  <button className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
-                    <ApperIcon name="Search" size={18} />
-                  </button>
-                  <button className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
-                    <ApperIcon name="MoreVertical" size={18} />
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <nav className="flex-1 overflow-y-auto p-4">
-              <div className="space-y-2">
-                {visibleRoutes.map((route) => (
-                  <NavLink
-                    key={route.id}
-                    to={route.path}
-                    className={({ isActive }) =>
-                      `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-150 ${
-                        isActive
-                          ? 'bg-primary text-primary-foreground shadow-sm font-medium'
-                          : 'text-gray-800 hover:bg-white/10 hover:text-gray-900'
-                      }`
-                    }
-                  >
-                    <ApperIcon name={route.icon} size={18} />
-                    <span className="font-medium">{route.label}</span>
-                  </NavLink>
-                ))}
-              </div>
-            </nav>
-          </aside>
-
-          {/* Mobile Sidebar */}
-          <aside
-            className={`lg:hidden fixed left-0 top-16 bottom-0 w-64 glass border-r border-white/20 z-50 transform transition-all duration-500 ease-out shadow-glass ${
-              isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-            }`}
-          >
-            <nav className="h-full overflow-y-auto p-4">
-              <div className="space-y-2">
-                {visibleRoutes.map((route) => (
-                  <NavLink
-                    key={route.id}
-                    to={route.path}
-                    className={({ isActive }) =>
-                      `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-150 ${
-                        isActive
-                          ? 'bg-primary text-primary-foreground shadow-sm font-medium'
-                          : 'text-gray-800 hover:bg-white/10 hover:text-gray-900'
-                      }`
-                    }
-                  >
-                    <ApperIcon name={route.icon} size={18} />
-                    <span className="font-medium">{route.label}</span>
-                  </NavLink>
-                ))}
-              </div>
-            </nav>
-          </aside>
-
-          {/* Main Content */}
-          <main className="flex-1 bg-background relative max-w-4xl mx-auto overflow-y-auto">
-            <div className="min-h-full">
-              <Outlet />
-            </div>
-          </main>
+          
+          {!isOnChatView && (
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+            >
+              <ApperIcon name={isMobileMenuOpen ? "X" : "Menu"} size={20} />
+            </button>
+          )}
         </div>
+      </header>
 
-        {/* Mobile Bottom Navigation - Only show when not in chat view */}
-        {!isOnChatView && (
-          <nav className="lg:hidden flex-shrink-0 glass border-t border-white/20 z-40 shadow-soft">
-            <div className="flex">
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Main Content Area */}
+<div className="flex-1 flex overflow-hidden">
+        {/* Desktop Sidebar */}
+        <aside className="hidden lg:flex w-64 glass border-r border-white/20 flex-col z-40 shadow-glass">
+          {/* Desktop Header */}
+          <div className="flex-shrink-0 h-16 bg-gradient-primary shadow-lg border-b border-white/20">
+            <div className="flex items-center justify-between h-full px-6">
+              <h1 className="text-white text-xl font-bold float-animation">ChatFlow</h1>
+              <div className="flex items-center space-x-2">
+                <button className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
+                  <ApperIcon name="Search" size={18} />
+                </button>
+                <button className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors">
+                  <ApperIcon name="MoreVertical" size={18} />
+                </button>
+</div>
+            </div>
+          </div>
+          
+{/* Desktop Navigation */}
+          <nav className="flex-1 overflow-y-auto p-4">
+            <div className="space-y-2">
               {visibleRoutes.map((route) => (
                 <NavLink
                   key={route.id}
                   to={route.path}
                   className={({ isActive }) =>
-                    `flex-1 flex flex-col items-center justify-center py-3 transition-colors ${
+                    `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-150 ${
                       isActive
-                        ? 'text-primary bg-primary/5'
-                        : 'text-gray-500 hover:text-gray-700'
+                        ? 'bg-primary text-primary-foreground shadow-sm font-medium'
+                        : 'text-gray-800 hover:bg-white/10 hover:text-gray-900'
                     }`
                   }
                 >
-                  <ApperIcon name={route.icon} size={20} />
-                  <span className="text-xs font-medium mt-1">{route.label}</span>
+                  <ApperIcon name={route.icon} size={18} />
+                  <span className="font-medium">{route.label}</span>
                 </NavLink>
               ))}
             </div>
           </nav>
-        )}
+</aside>
+        <aside
+          className={`lg:hidden fixed left-0 top-16 bottom-0 w-64 glass border-r border-white/20 z-50 transform transition-all duration-500 ease-out shadow-glass ${
+            isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <nav className="h-full overflow-y-auto p-4">
+            <div className="space-y-2">
+              {visibleRoutes.map((route) => (
+                <NavLink
+                  key={route.id}
+                  to={route.path}
+                  className={({ isActive }) =>
+                    `flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-150 ${
+                      isActive
+                        ? 'bg-primary text-primary-foreground shadow-sm font-medium'
+                        : 'text-gray-800 hover:bg-white/10 hover:text-gray-900'
+                    }`
+                  }
+                >
+                  <ApperIcon name={route.icon} size={18} />
+                  <span className="font-medium">{route.label}</span>
+                </NavLink>
+              ))}
+</div>
+          </nav>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 bg-background relative max-w-4xl mx-auto">
+          <Outlet />
+        </main>
       </div>
-    </>
+{/* Mobile Bottom Navigation - Only show when not in chat view */}
+      {!isOnChatView && (
+        <nav className="lg:hidden flex-shrink-0 glass border-t border-white/20 z-40 shadow-soft">
+          <div className="flex">
+            {visibleRoutes.map((route) => (
+              <NavLink
+                key={route.id}
+                to={route.path}
+                className={({ isActive }) =>
+                  `flex-1 flex flex-col items-center justify-center py-3 transition-colors ${
+                    isActive
+                      ? 'text-primary bg-primary/5'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`
+                }
+              >
+                <ApperIcon name={route.icon} size={20} />
+                <span className="text-xs font-medium mt-1">{route.label}</span>
+              </NavLink>
+            ))}
+          </div>
+        </nav>
+      )}
+    </div>
   );
 };
 
